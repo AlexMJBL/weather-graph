@@ -1,6 +1,7 @@
 import type { CurrentWeather } from "./currentWeather"
-import type { DailyWeather } from "./dailyWeather"
+
 import type { HourlyWeather } from "./hourlyWeather"
+import type { DailyWeather } from "./dailyWeather"
 
 export type WeatherData = { 
     current_weather : CurrentWeather

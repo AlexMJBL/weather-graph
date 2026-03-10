@@ -1,8 +1,10 @@
 export type HourlyWeather = { 
-    time : String[]
-    temperature_2m : number[]
+    time : string[]
+    temperature : number[]
     precipitation_probability: number[]
     apparent_temperature : number[]
     rain : number []
     weathercode : number[]
+    wind_speed:number[],
+    relative_humidity:number[]
 }
