@@ -2,8 +2,8 @@ import { useState } from "react";
 import { searchCity } from "../services/locationService";
 import type { City } from "../types/city";
 
-export function useLocation(city:string){
-    const [location, setLocation] = useState<City | null>(null)
+export function useLocation(){
+    const [locations, setLocations] = useState<City[]>([])
     const [loading,setLoading] = useState(false)
     const [error, setError] = useState<string | null>(null)
 
@@ -14,7 +14,7 @@ export function useLocation(city:string){
 
             const data = await searchCity(city) 
 
-            setLocation(data)
+            setLocations(data)
         } catch {
             setError(`failed to fetch location using city : ${city}`)
         } finally {
@@ -22,10 +22,15 @@ export function useLocation(city:string){
         }
     }
 
+    function clearLocations(){
+        setLocations([])
+    }
+
     return{
-        location,
+        locations,
         loading,
         error,
-        getLocation
+        getLocation,
+        clearLocations
     }
 }
