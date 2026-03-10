@@ -7,7 +7,7 @@ type Props = {
 export default function HourlyWeatherUI( {data} : Props ) {
     return ( 
         <div>
-            <h2>{}</h2>
+            <h2></h2>
         </div>
     )
 }

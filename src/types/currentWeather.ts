@@ -1,9 +1,7 @@
 export type CurrentWeather = {
-  temperature_2m: number[]
-  precipitation_probability: number[]
-  relative_humidity_2m: number[]
-  windspeed_10m: number[]
-  cloudcover: number[]
-  apparent_temperature: number[]
-  rain: number[]
+  temperature_2m: number
+  temperature_2m_max: number
+  temperature_2m_min: number
+  weathercode : number
+  feels : number
 }
