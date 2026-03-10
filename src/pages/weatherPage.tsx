@@ -1,8 +1,16 @@
 import { useEffect, useState } from "react"
 import { useWeather } from "../hooks/useWeather"
-import type { City } from "../types/city"
 import SearchBar from "../components/searchBar"
+import CurrentWeatherUI from "../components/currentWeatherUI"
+import DailyWeatherUI  from "../components/dailyWeatherUI"
+import HourlyWeatherUI from "../components/hourlyWeatherUI"
+
+import type { City } from "../types/city"
 import type { WeatherType } from "../types/weatherType"
+import type { CurrentWeather } from "../types/currentWeather"
+import type { DailyWeather } from "../types/dailyWeather"
+import type { HourlyWeather } from "../types/hourlyWeather"
+
 
 export default function WeatherPage() {
 
@@ -12,9 +20,9 @@ export default function WeatherPage() {
 
     useEffect(() => {
         if (city) {
-            fetchWeather(city.latitude, city.longitude)
+            fetchWeather(city.latitude, city.longitude, forecastTime)
         }
-    }, [city])
+    }, [city, forecastTime])
 
 
     return (
@@ -25,6 +33,16 @@ export default function WeatherPage() {
             </h1>
 
             <SearchBar onSelectCity={setCity} />
+
+            <div>
+                <button onClick={() => setForecastTime("current")}>Current weather</button>
+                <button onClick={() => setForecastTime("hourly")}>Hourly weather</button>
+                <button onClick={() => setForecastTime("daily")}>Daily weather</button>
+            </div>
+
+            {forecastTime == "current" && weather && <CurrentWeatherUI data={weather as CurrentWeather} />}
+            {forecastTime == "hourly" && weather && <HourlyWeatherUI data={weather as HourlyWeather} />}
+            {forecastTime == "daily" && weather && <DailyWeatherUI data={weather as DailyWeather} />}
 
          
         </div>
