@@ -1,0 +1,1 @@
+export type WeatherType = "current" | "hourly" | "daily"

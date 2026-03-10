@@ -1,10 +1,11 @@
 import type { CurrentWeather } from "../types/currentWeather";
 import type { DailyWeather } from "../types/dailyWeather";
 import type { HourlyWeather } from "../types/hourlyWeather";
+import type { WeatherType } from "../types/weatherType";
 
 const WEATHER_URL = "https://api.open-meteo.com/v1/forecast";
 
-export async function getWeather(lat: number, lon: number, type: "current" | "hourly" | "daily" = "current"): Promise<CurrentWeather| DailyWeather | HourlyWeather > {
+export async function getWeather(lat: number, lon: number, type: WeatherType = "current"): Promise<CurrentWeather| DailyWeather | HourlyWeather > {
   let params = "";
 
   if (type === "hourly") {

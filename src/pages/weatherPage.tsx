@@ -2,10 +2,12 @@ import { useEffect, useState } from "react"
 import { useWeather } from "../hooks/useWeather"
 import type { City } from "../types/city"
 import SearchBar from "../components/searchBar"
+import type { WeatherType } from "../types/weatherType"
 
 export default function WeatherPage() {
 
     const [city, setCity] = useState<City | null>(null)
+    const [forecastTime , setForecastTime] = useState<WeatherType>("current")
     const { weather, fetchWeather } = useWeather()
 
     useEffect(() => {
