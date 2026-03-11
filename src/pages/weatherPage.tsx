@@ -1,27 +1,19 @@
-import { useEffect, useState } from "react"
-import { useWeather } from "../hooks/useWeather"
 import SearchBar from "../components/index/searchBar"
 import CurrentWeatherUI from "../components/index/currentWeatherUI"
 import DailyWeatherUI from "../components/index/dailyWeatherUI"
 import HourlyWeatherUI from "../components/index/hourlyWeatherUI"
-
-
 import type { City } from "../types/city"
 import type { WeatherType } from "../types/weatherType"
 
+type Props = {
+    city: City | null
+    forecastTime: WeatherType
+    weather: any
+    handleSelectCity: (city: City) => void
+    handleSelectForecastTime: (weatherType: WeatherType) => void
 
-export default function WeatherPage() {
-
-    const [city, setCity] = useState<City | null>(null)
-    const [forecastTime, setForecastTime] = useState<WeatherType>("current")
-    const { weather, fetchWeather } = useWeather()
-
-    useEffect(() => {
-        if (city) {
-            fetchWeather(city.latitude, city.longitude)
-        }
-    }, [city])
-
+}
+export default function WeatherPage({ city, forecastTime, weather, handleSelectCity, handleSelectForecastTime }: Props) {
 
     return (
         <div className="flex min-h-screen flex-col items-center gap-6 p-10">
@@ -30,7 +22,7 @@ export default function WeatherPage() {
                 Weather Graph
             </h1>
 
-            <SearchBar onSelectCity={setCity} />
+            <SearchBar onSelectCity={handleSelectCity} />
 
             {city &&
                 <>
@@ -38,13 +30,12 @@ export default function WeatherPage() {
                         <h2>{city?.name} , {city?.country}</h2>
                     </div>
 
-
                     <div className="w-full max-w-xl">
 
                         {/* Tabs */}
                         <div className="flex">
                             <button
-                                onClick={() => setForecastTime("current")}
+                                onClick={() => handleSelectForecastTime("current")}
                                 className={`px-4 py-2 border border-b-0 rounded-t-lg
                                     ${forecastTime === "current"
                                         ? "bg-white text-black -mb-px"
@@ -54,7 +45,7 @@ export default function WeatherPage() {
                             </button>
 
                             <button
-                                onClick={() => setForecastTime("hourly")}
+                                onClick={() => handleSelectForecastTime("hourly")}
                                 className={`px-4 py-2 border border-b-0 rounded-t-lg
                                     ${forecastTime === "hourly"
                                         ? "bg-white text-black -mb-px"
@@ -64,7 +55,7 @@ export default function WeatherPage() {
                             </button>
 
                             <button
-                                onClick={() => setForecastTime("daily")}
+                                onClick={() => handleSelectForecastTime("daily")}
                                 className={`px-4 py-2 border border-b-0 rounded-t-lg
                                     ${forecastTime === "daily"
                                         ? "bg-white text-black -mb-px"
