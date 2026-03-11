@@ -32,7 +32,7 @@ export default function DailyWeatherCard(props : Props) {
                     <Icon size={40} className="text-blue-500 md:size-32" />
 
                     <span className="text-3xl md:text-2xl font-bold">
-                        {Math.round(props.temperature_min)}°-{Math.round(props.temperature_max)}°
+                        {Math.round(props.temperature_min)}° | {Math.round(props.temperature_max)}°
                     </span>
 
                 </div>

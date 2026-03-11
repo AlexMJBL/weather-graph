@@ -1,4 +1,4 @@
-import { formatTime } from "../utils/FormatTime"
+
 
 import type { CurrentWeather } from "../types/currentWeather";
 import type { HourlyWeather } from "../types/hourlyWeather";
@@ -46,7 +46,7 @@ function mapHourlyWeather(data: any): HourlyWeather {
   )
   const start = index >= 0 ? index + 1 : 0
   return {
-    time: data.hourly.time.slice(start, start + 24).map((t: string) => formatTime(t)),
+    time: data.hourly.time.slice(start, start + 24),
     temperature: data.hourly.temperature_2m.slice(start, start + 24),
     precipitation_probability: data.hourly.precipitation_probability.slice(start, start + 24),
     apparent_temperature: data.hourly.apparent_temperature.slice(start, start + 24),

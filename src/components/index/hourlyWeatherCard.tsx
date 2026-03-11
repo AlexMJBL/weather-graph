@@ -1,4 +1,5 @@
 import { getWeatherInfo } from "../../utils/weatherCode"
+import { formatTimeToHour } from "../../utils/FormatTimeToHour"
 
 type Props = {
     time: string
@@ -22,7 +23,7 @@ export default function HourlyWeatherCard(props: Props) {
 
             {/* time */}
             <div className="text-center text-xl md:text-lg font-semibold text-gray-600 mb-3">
-                {props.time}
+                {formatTimeToHour(props.time)}
             </div>
 
             <div className="flex justify-between items-center md:flex-col md:gap-3">
