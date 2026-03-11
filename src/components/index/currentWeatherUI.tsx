@@ -1,5 +1,5 @@
-import type { CurrentWeather } from "../types/currentWeather"
-import { getWeatherInfo } from "../utils/weatherCode"
+import type { CurrentWeather } from "../../types/currentWeather"
+import { getWeatherInfo } from "../../utils/weatherCode"
 
 type Props = {
   data: CurrentWeather
@@ -18,7 +18,7 @@ export default function CurrentWeatherUI({ data }: Props) {
       <div className="flex items-center gap-4">
         <Icon size={70} />
         <span className="text-6xl font-bold">
-          {Math.round(data.temperature_2m)}°
+          {data.temperature_2m}°
         </span>
       </div>
 
@@ -27,10 +27,10 @@ export default function CurrentWeatherUI({ data }: Props) {
         <p className="text-lg font-semibold text-gray-800">
           {Weather_Description}
         </p>
-        <p>Feels {Math.round(data.feels)}°</p>
+        <p>Feels {data.feels}°</p>
         <p>
-          H: {Math.round(data.temperature_2m_max)}°  
-          L: {Math.round(data.temperature_2m_min)}°
+          H: {data.temperature_2m_max}° -
+          L: {data.temperature_2m_min}°
         </p>
       </div>
 

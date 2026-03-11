@@ -1,6 +1,6 @@
 import { FaSearch } from "react-icons/fa";
-import type { City } from "../types/city";
-import { useLocation } from "../hooks/useLocation"
+import type { City } from "../../types/city";
+import { useLocation } from "../../hooks/useLocation";
 import { useState } from "react"
 
 type Props = {
