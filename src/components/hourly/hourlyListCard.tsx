@@ -18,29 +18,36 @@ export default function HourlyListCard(props: Props) {
     const Icon = weather.icon
     const label = weather.label
 
-
     return (
-        <div>
-            <div>
+        <div className="grid grid-cols-5 items-center p-3 border-b">
+
+            <div className="flex items-center gap-2">
                 <p>{formatTimeToHour(props.time)}</p>
                 <Icon size={30} />
             </div>
+
             <div>
-                <p>{props.temperature}</p>
+                <p>{props.temperature}°</p>
             </div>
+
             <div>
                 <p>{label}</p>
-                <p>{props.apparent_temperature}</p>
+                <p className="text-sm opacity-70">
+                    feels {props.apparent_temperature}°
+                </p>
             </div>
+
             <div>
-                <p>{props.precipitation_probability}</p>
-                {props.rain != 0 && <p>{props.rain}</p>}
-                {props.snowfall != 0 && <p>{props.snowfall}</p>}
+                <p>{props.precipitation_probability}%</p>
+                {props.rain !== 0 && <p>{props.rain} mm</p>}
+                {props.snowfall !== 0 && <p>{props.snowfall} cm</p>}
             </div>
+
             <div>
-                <p>{props.wind_speed}</p>
-                <p>{props.relative_humidity}</p>
+                <p>{props.wind_speed} km/h</p>
+                <p>{props.relative_humidity}%</p>
             </div>
+
         </div>
     )
 }
