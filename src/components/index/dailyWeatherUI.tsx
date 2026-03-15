@@ -11,7 +11,7 @@ export default function DailyWeatherUI({ data }: Props) {
         <div>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 w-full">
 
-                {data.time.slice(0,4).map((time, i) => (
+                {data.time.slice(0, 4).map((time, i) => (
                     <DailyWeatherCard
                         key={i}
                         time={time}
@@ -23,7 +23,12 @@ export default function DailyWeatherUI({ data }: Props) {
                     />
                 ))}
             </div >
-            <Link to="/daily">Full 7 day</Link>
+            <Link
+                to="/daily"
+                className="inline-block mt-4 px-4 py-2 rounded-xl bg-blue-500 text-white font-medium hover:bg-blue-600 transition"
+            >
+                Full 7 day
+            </Link>
         </div >
     )
 }

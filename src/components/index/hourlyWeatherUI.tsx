@@ -27,7 +27,10 @@ export default function HourlyWeatherUI({ data }: Props) {
                     />
                 ))}
             </div>
-            <Link to="/hourly">Full 24 hours</Link>
+            <Link
+                to="/daily"
+                className="inline-block mt-4 px-4 py-2 rounded-xl bg-blue-500 text-white font-medium hover:bg-blue-600 transition"
+            >Full 24 hours</Link>
         </div>
     )
 }
