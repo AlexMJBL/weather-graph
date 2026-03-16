@@ -4,6 +4,7 @@ import DailyWeatherUI from "../components/index/dailyWeatherUI"
 import HourlyWeatherUI from "../components/index/hourlyWeatherUI"
 import type { City } from "../types/city"
 import type { WeatherType } from "../types/weatherType"
+import LocationMap from "../components/index/locationMap"
 
 type Props = {
     city: City | null
@@ -16,73 +17,88 @@ type Props = {
 export default function WeatherPage({ city, forecastTime, weather, handleSelectCity, handleSelectForecastTime }: Props) {
 
     return (
-        <div className="flex min-h-screen flex-col items-center gap-6 p-10">
+        <div className="min-h-screen bg-gradient-to-br from-blue-200 via-sky-300 to-blue-500 flex flex-col items-center gap-8 p-10">
 
-            <h1 className="text-3xl font-bold">
+            {/* Header */}
+            <h1 className="text-4xl font-bold text-white drop-shadow">
                 Weather Graph
             </h1>
 
-            <SearchBar onSelectCity={handleSelectCity} />
+            {/* Search */}
+            <div className="w-full max-w-xl flex justify-center">
+                <SearchBar onSelectCity={handleSelectCity} />
+            </div>
 
             {weather &&
                 <>
-                    <div>
-                        <h2>
-  {city?.name} {city?.country && `, ${city.country}`}
-</h2>
+                    {/* City */}
+                    <div className="text-white text-2xl font-semibold drop-shadow">
+                        {city?.name} {city?.country && `, ${city.country}`}
                     </div>
 
                     <div className="w-full max-w-xl">
 
                         {/* Tabs */}
-                        <div className="flex">
+                        <div className="flex gap-2 ml-2">
+
                             <button
                                 onClick={() => handleSelectForecastTime("current")}
-                                className={`px-4 py-2 border border-b-0 rounded-t-lg
-                                    ${forecastTime === "current"
-                                        ? "bg-white text-black -mb-px"
-                                        : "bg-gray-200 text-gray-600 hover:bg-gray-300"}`}
+                                className={`px-4 py-2 rounded-t-lg font-medium transition
+                                ${forecastTime === "current"
+                                        ? "bg-white text-blue-600 shadow"
+                                        : "bg-white/40 text-white hover:bg-white/60"}`}
                             >
                                 Current
                             </button>
 
                             <button
                                 onClick={() => handleSelectForecastTime("hourly")}
-                                className={`px-4 py-2 border border-b-0 rounded-t-lg
-                                    ${forecastTime === "hourly"
-                                        ? "bg-white text-black -mb-px"
-                                        : "bg-gray-200 text-gray-600 hover:bg-gray-300"}`}
+                                className={`px-4 py-2 rounded-t-lg font-medium transition
+                                ${forecastTime === "hourly"
+                                        ? "bg-white text-blue-600 shadow"
+                                        : "bg-white/40 text-white hover:bg-white/60"}`}
                             >
                                 Hourly
                             </button>
 
                             <button
                                 onClick={() => handleSelectForecastTime("daily")}
-                                className={`px-4 py-2 border border-b-0 rounded-t-lg
-                                    ${forecastTime === "daily"
-                                        ? "bg-white text-black -mb-px"
-                                        : "bg-gray-200 text-gray-600 hover:bg-gray-300"}`}
+                                className={`px-4 py-2 rounded-t-lg font-medium transition
+                                ${forecastTime === "daily"
+                                        ? "bg-white text-blue-600 shadow"
+                                        : "bg-white/40 text-white hover:bg-white/60"}`}
                             >
                                 Daily
                             </button>
+
                         </div>
 
                         {/* Panel */}
-                        <div className="border rounded-b-lg p-6 bg-white shadow ">
+                        <div className="bg-white rounded-2xl p-6 shadow-xl">
 
-                            {forecastTime == "current" && weather && (
+                            {forecastTime == "current" && (
                                 <CurrentWeatherUI data={weather.current_weather} />
                             )}
 
-                            {forecastTime == "hourly" && weather && (
+                            {forecastTime == "hourly" && (
                                 <HourlyWeatherUI data={weather.hourly} />
                             )}
 
-                            {forecastTime == "daily" && weather && (
+                            {forecastTime == "daily" && (
                                 <DailyWeatherUI data={weather.daily} />
                             )}
 
                         </div>
+
+                        {/* Map */}
+                        {city && (
+                            <div className="mt-6 rounded-2xl overflow-hidden shadow-xl">
+                                <LocationMap
+                                    lat={city.latitude}
+                                    lon={city.longitude}
+                                />
+                            </div>
+                        )}
 
                     </div>
                 </>

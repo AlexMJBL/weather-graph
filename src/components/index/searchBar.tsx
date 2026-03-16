@@ -42,7 +42,7 @@ export default function SearchBar({ onSelectCity }: Props) {
                 />
             </div>
 
-            {locations.length > 0  && searchValue.length >= 2 && (
+            {locations?.length > 0  && searchValue.length >= 2 && (
                 <ul className="absolute top-full left-0 w-full bg-white border rounded-lg shadow mt-1 z-10">
 
                     {locations.map((l) => (
