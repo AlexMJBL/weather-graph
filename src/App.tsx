@@ -24,7 +24,7 @@ export default function App(){
     <Routes>
       <Route path="/" element={<WeatherPage city={city} forecastTime={forecastTime} weather={weather} handleSelectCity={setCity} handleSelectForecastTime={setForecastTime}/>} />
       <Route path="/hourly" element={<HourlyPage hourlyWeather={weather?.hourly} city={city} />} />
-      <Route path="/daily" element={<DailyPage />} />
+      <Route path="/daily" element={<DailyPage dailyWeather={weather?.daily} city={city} />} />
     </Routes>
     
   )

@@ -7,9 +7,9 @@ type Props = {
 }
 
 export default function HourlyList({ hourlyWeather }: Props) {
-  if (!hourlyWeather) return null
-    
-  return (
+    if (!hourlyWeather) return null
+
+    return (
         <div className="space-y-4">
 
             {hourlyWeather?.time.map((time, i) => {

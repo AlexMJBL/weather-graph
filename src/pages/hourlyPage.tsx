@@ -5,10 +5,12 @@ import type { HourlyWeather } from "../types/hourlyWeather";
 
 type Props = { 
     hourlyWeather?: HourlyWeather
-    city?: City
+    city?: City | null
 }
 
 export default function HourlyPage({ hourlyWeather, city }: Props) {
+     if (!hourlyWeather) return null
+    
     return (
         <div className="max-w-5xl mx-auto p-4 space-y-6">
 
@@ -17,7 +19,7 @@ export default function HourlyPage({ hourlyWeather, city }: Props) {
             </h2>
 
             <div className="bg-white/10 backdrop-blur rounded-2xl p-4 shadow">
-                <HourlyTempGraph />
+                <HourlyTempGraph temperature={hourlyWeather.temperature} time={hourlyWeather.time} />
             </div>
 
             <div className="bg-white/10 backdrop-blur rounded-2xl p-4 shadow">
@@ -25,5 +27,6 @@ export default function HourlyPage({ hourlyWeather, city }: Props) {
             </div>
 
         </div>
+        
     )
 }

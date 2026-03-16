@@ -46,7 +46,7 @@ export default function HourlyWeatherCard(props: Props) {
                         💧 {props.precipitation_probability}%
                     </span>
 
-                    <span>
+                    <span className="text-center w-full">
                         Feels {props.apparent_temperature}°
                     </span>
 
