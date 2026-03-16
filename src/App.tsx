@@ -9,23 +9,40 @@ import { useWeather } from "./hooks/useWeather";
 import type { City } from "./types/city"
 import type { WeatherType } from "./types/weatherType"
 
-export default function App(){ 
-   const [city, setCity] = useState<City | null>(null)
-      const [forecastTime, setForecastTime] = useState<WeatherType>("current")
-      const { weather, fetchWeather } = useWeather()
-  
-      useEffect(() => {
-          if (city) {
-              fetchWeather(city.latitude, city.longitude)
-          }
-      }, [city])
+export default function App() {
+  const [city, setCity] = useState<City | null>(null)
+  const [forecastTime, setForecastTime] = useState<WeatherType>("current")
+  const { weather, fetchWeather } = useWeather()
+
+useEffect(() => {
+
+  // si une ville est choisie
+  if (city) {
+    fetchWeather(city.latitude, city.longitude)
+    return
+  }
+
+  // sinon → geolocation
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      fetchWeather(
+        position.coords.latitude,
+        position.coords.longitude
+      )
+    },
+    (error) => {
+      console.error("Location error", error)
+    }
+  )
+
+}, [city])
 
   return (
     <Routes>
-      <Route path="/" element={<WeatherPage city={city} forecastTime={forecastTime} weather={weather} handleSelectCity={setCity} handleSelectForecastTime={setForecastTime}/>} />
+      <Route path="/" element={<WeatherPage city={city} forecastTime={forecastTime} weather={weather} handleSelectCity={setCity} handleSelectForecastTime={setForecastTime} />} />
       <Route path="/hourly" element={<HourlyPage hourlyWeather={weather?.hourly} city={city} />} />
       <Route path="/daily" element={<DailyPage dailyWeather={weather?.daily} city={city} />} />
     </Routes>
-    
+
   )
 }
