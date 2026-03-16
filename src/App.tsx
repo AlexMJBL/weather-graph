@@ -16,22 +16,32 @@ export default function App() {
 
 useEffect(() => {
 
-  // si une ville est choisie
   if (city) {
     fetchWeather(city.latitude, city.longitude)
     return
   }
 
-  // sinon → geolocation
   navigator.geolocation.getCurrentPosition(
     (position) => {
-      fetchWeather(
-        position.coords.latitude,
-        position.coords.longitude
-      )
+
+      const lat = position.coords.latitude
+      const lon = position.coords.longitude
+
+      setCity({
+        name: "Your location",
+        country: "",
+        latitude: lat,
+        longitude: lon
+      })
+
     },
-    (error) => {
-      console.error("Location error", error)
+    () => {
+      setCity({
+        name: "Montreal",
+        country: "Canada",
+        latitude: 45.5017,
+        longitude: -73.5673
+      })
     }
   )
 

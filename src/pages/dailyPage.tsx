@@ -17,7 +17,9 @@ export default function DailyPage({ dailyWeather, city }: Props) {
         <div className="max-w-5xl mx-auto p-4 space-y-6">
 
             <h2 className="text-2xl font-semibold text-center">
-                {city?.name}, {city?.country}
+               
+  {city?.name} {city?.country && `, ${city.country}`}
+
             </h2>
 
             <div className="bg-white/10 backdrop-blur rounded-2xl p-4 shadow">

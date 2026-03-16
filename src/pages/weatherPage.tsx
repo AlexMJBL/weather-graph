@@ -24,10 +24,12 @@ export default function WeatherPage({ city, forecastTime, weather, handleSelectC
 
             <SearchBar onSelectCity={handleSelectCity} />
 
-            {city &&
+            {weather &&
                 <>
                     <div>
-                        <h2>{city?.name} , {city?.country}</h2>
+                        <h2>
+  {city?.name} {city?.country && `, ${city.country}`}
+</h2>
                     </div>
 
                     <div className="w-full max-w-xl">
