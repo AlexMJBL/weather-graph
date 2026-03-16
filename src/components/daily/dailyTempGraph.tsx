@@ -1,5 +1,5 @@
 import { LineChart, Line, XAxis,YAxis, Tooltip, ResponsiveContainer} from "recharts"
-import { formatTimeToHour } from "../../utils/FormatTimeToHour"
+import { formatDay } from "../../utils/FormatDay"
 
 
 type Props = { 
@@ -10,7 +10,7 @@ type Props = {
 
 export default function DailyTempGraph({ time, temperature_max, temperature_min}: Props) {
     const data = time.map((t, i) => ({
-        time: formatTimeToHour(t),
+        time: formatDay(t),
         temp_max: temperature_max[i],
         temp_min: temperature_min[i]
     }))
