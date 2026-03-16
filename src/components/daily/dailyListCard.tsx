@@ -13,7 +13,6 @@ export default function DailyListCard(props: Props) {
 
     const weather = getWeatherInfo(props.weathercode)
     const Icon = weather.icon
-    const label = weather.label
 
     const date = new Date(props.time)
     const day = date.toLocaleDateString("en-US", { weekday: "short" })
