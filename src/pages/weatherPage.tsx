@@ -39,7 +39,7 @@ export default function WeatherPage({ city, forecastTime, weather, handleSelectC
                     <div className="w-full max-w-xl">
 
                         {/* Tabs */}
-                        <div className="flex gap-2 ml-2">
+                        <div className="flex gap-2 ml-3">
 
                             <button
                                 onClick={() => handleSelectForecastTime("current")}

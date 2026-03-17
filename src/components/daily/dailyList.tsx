@@ -3,16 +3,16 @@ import { formatDateLong } from "../../utils/FormatDate"
 import DailyListCard from "./dailyListCard"
 
 type Props = {
-    dailyWeather?: DailyWeather
+    dailyWeather: DailyWeather
 }
 
 export default function DailyList({ dailyWeather }: Props) {
-    if (!dailyWeather) null
+
     return (
 
         <div className="space-y-4">
 
-            {dailyWeather?.time.map((time, i) => {
+            {dailyWeather.time.map((time, i) => {
 
                 const date = new Date(time).toLocaleDateString()
                 const prevDate =
@@ -26,7 +26,7 @@ export default function DailyList({ dailyWeather }: Props) {
                     <div key={time}>
 
                         {showDate && (
-                            <h3 className="text-lg font-semibold mt-4">
+                            <h3 className="text-lg font-semibold mt-4 text-gray-700">
                                 {formatDateLong(date)}
                             </h3>
                         )}

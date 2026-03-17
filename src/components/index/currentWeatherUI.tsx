@@ -12,25 +12,28 @@ export default function CurrentWeatherUI({ data }: Props) {
   const Weather_Description = weather.label
 
   return (
-   <div className="flex items-center justify-between p-8 bg-gray-200 rounded-xl shadow w-full">
+    <div className="flex items-center justify-between p-8 bg-gray-100 rounded-2xl shadow-md w-full">
 
       {/* Icon + Temp */}
-      <div className="flex items-center gap-4">
-        <Icon size={70} />
-        <span className="text-6xl font-bold">
+      <div className="flex items-center gap-6">
+        <Icon size={80} className="text-gray-700" />
+        <span className="text-6xl font-bold text-gray-900">
           {data.temperature_2m}°
         </span>
       </div>
 
       {/* Infos */}
-      <div className="flex flex-col text-right text-gray-600">
-        <p className="text-lg font-semibold text-gray-800">
+      <div className="flex flex-col text-right">
+        <p className="text-xl font-semibold text-gray-800">
           {Weather_Description}
         </p>
-        <p>Feels {data.feels}°</p>
-        <p>
-          H: {data.temperature_2m_max}° -
-          L: {data.temperature_2m_min}°
+
+        <p className="text-gray-500">
+          Feels like {data.feels}°
+        </p>
+
+        <p className="text-gray-500">
+          H: {data.temperature_2m_max}°  L: {data.temperature_2m_min}°
         </p>
       </div>
 

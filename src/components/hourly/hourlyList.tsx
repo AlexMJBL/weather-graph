@@ -3,16 +3,16 @@ import HourlyListCard from "./hourlyListCard"
 import { formatDateLong } from "../../utils/FormatDate"
 
 type Props = {
-    hourlyWeather?: HourlyWeather
+    hourlyWeather: HourlyWeather
 }
 
 export default function HourlyList({ hourlyWeather }: Props) {
-    if (!hourlyWeather) return null
 
     return (
+
         <div className="space-y-4">
 
-            {hourlyWeather?.time.map((time, i) => {
+            {hourlyWeather.time.map((time, i) => {
 
                 const date = new Date(time).toLocaleDateString()
                 const prevDate =
@@ -26,7 +26,7 @@ export default function HourlyList({ hourlyWeather }: Props) {
                     <div key={time}>
 
                         {showDate && (
-                            <h3 className="text-lg font-semibold mt-4">
+                            <h3 className="text-lg font-semibold mt-4 text-gray-700">
                                 {formatDateLong(date)}
                             </h3>
                         )}
@@ -46,6 +46,8 @@ export default function HourlyList({ hourlyWeather }: Props) {
                     </div>
                 )
             })}
+
         </div>
+
     )
 }
